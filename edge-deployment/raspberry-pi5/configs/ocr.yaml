@@ -1,0 +1,42 @@
+# ArduMedics OCR Configuration
+# For Raspberry Pi 5 Edge Deployment
+
+ocr:
+  engines:
+    - tesseract
+    - easyocr
+    - paddleocr
+
+  fusion:
+    enabled: true
+    method: "confidence_weighted"  # "confidence_weighted" or "voting"
+
+  tesseract:
+    language: "eng"
+    oem: 3         # OCR Engine Mode: 3 = default
+    psm: 6         # Page Segmentation Mode: 6 = uniform block
+
+  easyocr:
+    languages: ["en"]
+    gpu: false     # No GPU on Pi 5
+    model_storage_directory: null
+
+  paddleocr:
+    language: "en"
+    use_angle_cls: true
+    use_gpu: false
+
+prescription:
+  # Medicine name extraction patterns
+  medicine_patterns:
+    - "(?i)(tab|cap|syp|inj|cream|gel|drops)\\.?\\s+[a-z]+"
+    - "(?i)[a-z]+\\s+(mg|ml|mcg|iu)"
+
+  # Dosage extraction patterns
+  dosage_patterns:
+    - "(?i)\\d+\\s*(mg|ml|mcg|iu)\\s*(\\d+x)?\\s*(daily|bd|tds|qid|sos|prn)?"
+
+  # Schedule extraction
+  schedule_patterns:
+    - "(?i)(1x|2x|3x|4x|daily|bd|tds|qid|sos|prn|stat|od|mane|nocte)"
+    - "(?i)(morning|afternoon|evening|night|bedtime|before food|after food)"

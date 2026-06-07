@@ -1,0 +1,37 @@
+# ArduMedics Python Dependencies
+# Core packages (required for all deployments)
+
+numpy>=1.24.0
+opencv-python-headless>=4.8.0
+pyyaml>=6.0
+
+# YOLOv8 Pose Estimation
+ultralytics>=8.1.0
+
+# NCNN (ARM-optimized inference for Pi 5)
+ncnn>=1.0.0
+
+# Raspberry Pi GPIO (for alerts on Pi 5)
+# RPi.GPIO>=0.7.0  # Only on Raspberry Pi
+# gpiozero>=2.0.0   # Only on Raspberry Pi
+
+# OCR Engines (optional — requires more disk space on Pi 5)
+# pytesseract>=0.3.10
+# easyocr>=1.7.0
+# paddleocr>=2.7.0
+# paddlepaddle>=2.5.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Scientific Computing
+scipy>=1.10.0
+
+# Utilities
+tqdm>=4.65.0
+pandas>=2.0.0
+tabulate>=0.9.0
+
+# Benchmark (optional)
+# psutil>=5.9.0

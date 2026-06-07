@@ -1,0 +1,43 @@
+# ArduMedics Fall Detection Configuration
+# For Raspberry Pi 5 Edge Deployment
+
+model:
+  # Path to NCNN model directory (containing model.ncnn.param + model.ncnn.bin)
+  # Or path to PyTorch .pt file
+  path: "models/best_nano_ncnn"
+  format: "ncnn"  # "ncnn" or "pytorch"
+  imgsz: 640      # Input image size (use 320 for faster Pi5)
+  confidence: 0.25 # Detection confidence threshold
+
+camera:
+  device: 0        # Camera device index
+  width: 640       # Capture resolution
+  height: 480
+  fps_target: 10   # Target FPS (frame skipping applied automatically)
+
+tpc:
+  window_size: 30       # TPC sliding window (frames of velocity history)
+  confirm_frames: 5     # Consecutive fall frames needed for TPC confirmation
+  torso_angle_threshold: 60   # Degrees from vertical (more = more horizontal)
+  ground_proximity_threshold: 0.4  # Hip-to-ankle ratio
+  velocity_threshold: 0.15   # Normalized downward velocity
+
+alerts:
+  gpio_pin: 17       # GPIO pin for buzzer/LED (set to null to disable)
+  alert_cooldown: 10  # Seconds between alerts
+  buzzer_duration: 3  # Seconds buzzer stays on
+  # SMS alerts require Twilio or similar API setup
+  sms_enabled: false
+  sms_api_key: ""
+
+logging:
+  enabled: true
+  log_file: "/var/log/ardumedics/fall_detection.log"
+  log_level: "INFO"
+
+display:
+  show_keypoints: true
+  show_skeleton: true
+  show_bounding_box: true
+  show_fps: true
+  show_fall_status: true
